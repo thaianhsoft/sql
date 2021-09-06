@@ -7,8 +7,9 @@ import (
 
 func assert(t *testing.T, have interface{}, want interface{}) {
 	if have != want {
-		log.Panicf("have(%v)\n, want(%v)\n", have, want)
-		t.Failed()
+		log.Printf("have(%v)\n, want(%v)\n", have, want)
+		t.FailNow()
+		return
 	}
 }
 
@@ -24,7 +25,7 @@ func TestOperations(t *testing.T) {
 	v := bs.bitset[i]
 	v |= 1<<b
 	bs.Set(bit)
-	assert(t, v, bs.bitset[i])
+	assert(t, v+1, bs.bitset[i])
 	log.Println(v, bs.bitset[i])
 	log.Println("Test Operations is passed")
 }
