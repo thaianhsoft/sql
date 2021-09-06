@@ -25,7 +25,7 @@ func TestOperations(t *testing.T) {
 	v := bs.bitset[i]
 	v |= 1<<b
 	bs.Set(bit)
-	assert(t, v+1, bs.bitset[i])
+	assert(t, v, bs.bitset[i])
 	log.Println(v, bs.bitset[i])
 	log.Println("Test Operations is passed")
 }
@@ -45,9 +45,20 @@ func TestReSize(t *testing.T) {
 }
 
 func TestToString(t *testing.T) {
-	size := 200
+	size := 10
 	bs := New(size)
-	bs.Set(199)
-	bs.Set(54)
-	log.Println(bs.toString())
+	bit := 9
+	bs.Set(bit)
+	
+	str := ""
+	for i := 0; i < 32; i++ {
+		if i == bit {
+			str += "1"
+		} else {
+			str += "0"
+		}
+	}
+
+	assert(t, str, bs.toString())
+	log.Printf("%v passed", t.Name())
 }

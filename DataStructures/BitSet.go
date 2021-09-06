@@ -16,10 +16,16 @@ type BitSet struct {
 func New(size ...int) *BitSet {
 	bs := &BitSet{}
 	if len(size) == 1 {
-		vSize := (size[0] % 32)+1
-		bs.bitset = make([]int, vSize)
-		bs.size = size[0]
-		return bs
+		if size[0] >= 32 {
+			vSize := (size[0] % 32)+1
+			bs.bitset = make([]int, vSize)
+			bs.size = size[0]
+			return bs
+		} else {
+			bs.bitset = make([]int, 1)
+			bs.size = size[0]
+			return bs
+		}
 	}
 	bs.bitset = make([]int, 0)
 	bs.size = 0
