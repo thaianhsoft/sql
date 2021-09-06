@@ -81,7 +81,6 @@ func (b *BitSet) Resize(newSize int) {
 	}
 	vSize := (newSize % 32)+1
 	change := vSize - len(b.bitset)
-	log.Println("resize start", change)
 	b.size = vSize
 	add := make([]int, change)
 	b.bitset = append(b.bitset, add...)
