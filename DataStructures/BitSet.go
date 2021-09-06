@@ -1,4 +1,4 @@
-package BitSet
+package collection
 
 import (
 	"errors"

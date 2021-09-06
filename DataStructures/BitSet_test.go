@@ -1,18 +1,10 @@
-package BitSet
+package collection
 
 import (
-	"log"
 	"testing"
-)
 
-func assert(t *testing.T, have interface{}, want interface{}) {
-	if have != want {
-		log.Printf("have(%v)\n, want(%v)\n", have, want)
-		t.FailNow()
-		return
-	}
-	log.Printf("%v is passed\n", t.Name())
-}
+	"github.com/thaianhsoft/sql/utils"
+)
 
 func TestOperations(t *testing.T) {
 	size := 200
@@ -23,7 +15,7 @@ func TestOperations(t *testing.T) {
 	v := bs.bitset[i]
 	v |= 1 << b
 	bs.Set(bit)
-	assert(t, v, bs.bitset[i])
+	utils.Assert(t, v, bs.bitset[i])
 }
 
 func TestReSize(t *testing.T) {
@@ -35,7 +27,7 @@ func TestReSize(t *testing.T) {
 
 	change := vNewSize - vSize
 	bs.Resize(new_size)
-	assert(t, change, len(bs.bitset)-vSize)
+	utils.Assert(t, change, len(bs.bitset)-vSize)
 }
 
 func TestToString(t *testing.T) {
@@ -53,5 +45,5 @@ func TestToString(t *testing.T) {
 		}
 	}
 
-	assert(t, str, bs.toString())
+	utils.Assert(t, str, bs.toString())
 }
