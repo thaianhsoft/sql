@@ -19,8 +19,8 @@ func TestOperations(t *testing.T) {
 	assert(t, vSize, len(bs.bitset))
 
 	bit := 199
-	i := bit % 32
-	b := (bit-i)/32
+	b := bit % 32
+	i := (bit-b)/32
 	v := bs.bitset[i]
 	v |= 1<<b
 	bs.Set(bit)
@@ -41,4 +41,12 @@ func TestReSize(t *testing.T) {
 	assert(t, change, len(bs.bitset)-vSize)
 	log.Println(change, len(bs.bitset))
 	log.Println("Test Resize is passed")
+}
+
+func TestToString(t *testing.T) {
+	size := 200
+	bs := New(size)
+	bs.Set(199)
+	bs.Set(54)
+	log.Println(bs.toString())
 }

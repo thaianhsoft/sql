@@ -27,13 +27,13 @@ func New(size ...int) *BitSet {
 }
 
 func (b*BitSet) getBit(bit_ith int) int {
-	r := bit_ith % 32
-	vBit := (bit_ith - r)/32
-	return vBit
+	return bit_ith%32
 }
 
 func (b*BitSet) getIndex(bit_ith int) int {
-	return bit_ith%32
+	r := bit_ith%32
+	index := (bit_ith-r)/32
+	return index
 }
 
 func (b*BitSet) Set(bit int) error {
